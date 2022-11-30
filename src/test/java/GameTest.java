@@ -53,6 +53,7 @@ public class GameTest {
 
     }
 
+
     @Test
     public void strongerNotExistPlayer1() {
         game.register(player1);
@@ -75,6 +76,70 @@ public class GameTest {
         game.register(player5);
         Assertions.assertThrows(NotRegisteredException.class, () -> {
                     game.round("Петя", "Аня");
+                }
+        );
+    }
+
+    @Test
+    public void strongerPlayerMap() {
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
+        game.addPlayer(player4);
+        game.addPlayer(player5);
+        int expected = 1;
+        int actual = game.round1("Оля", "Коля");
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void strongerPlayerMap1() {
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
+        game.addPlayer(player4);
+        game.addPlayer(player5);
+        int expected = 2;
+        int actual = game.round1("Миша", "Петя");
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void strongerPlayerMap2() {
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
+        game.addPlayer(player4);
+        game.addPlayer(player5);
+        int expected = 0;
+        int actual = game.round1("Вася", "Коля");
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void strongerNotExistPlayerWithMap() {
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
+        game.addPlayer(player4);
+        game.addPlayer(player5);
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+                    game.round1("Петя", "Аня");
+                }
+        );
+    }
+    @Test
+    public void strongerNotExistPlayerWithMap1() {
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
+        game.addPlayer(player4);
+        game.addPlayer(player5);
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+                    game.round1("Аня", "Петя");
                 }
         );
     }
